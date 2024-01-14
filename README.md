@@ -1,6 +1,6 @@
 # Rock Paper Scissors
 
-A setup where an intelligent agent learns how to play a game of rock paper scissors based on visual stimuli and based on an external dataset that parameterizes the agent's environment.
+A setup where an intelligent agent learns how to play a game of rock paper scissors based on visual stimuli and on an external [dataset](https://www.kaggle.com/datasets/drgfreeman/rockpaperscissors) that parameterizes the agent's environment.
 
 Basic step rules
 
@@ -42,6 +42,17 @@ The resulting trained model achieves a 0.915 test accuracy (Counting as true pos
 - Win round -> Returns: 2 euro
 - Tie round -> Returns: 1 euro
 - Loss round -> Returns: -1 euro
+
+![](./readme_content/output.png)
+
+Various predictions on the test set:
+
+![](./readme_content/pred1.png)
+
+![](./readme_content/pred2.png)
+
+![](./readme_content/pred3.png)
+
 In this case, the selected baseline for that metric is ((2+1-1)/3)*(n_rounds) = 2 EUR.
 
 One can intuitively speculate that performance drops notably when external images of the relevant hand formations (i.e. rock, scissors, paper hand formations) are inserted into the model as inputs. My evidence are the images tested from the `./small_test_sample` directory. This is obviously due to overfitting tendencies of the agent's policy model, as the model has not seen images with different backgrounds, many other different hands, wrists with bracelets or watches etc. Only by considering the fact that the training is limited on green backgrounds, we expect the model to behave in a biased way when the background is white for example.
@@ -49,3 +60,7 @@ One can intuitively speculate that performance drops notably when external image
 ## Potential Improvement Directions
 
 Hence the train set could be expanded in a way so that images would include new objects and variations such as the ones mentioned in the previous section. Additional augmentation would also be another cheap but nevertheless an effective alternative to boost performance. Also an edge detector or an image segmenter that splits the image in a hand vs background would significantly assist the agent to process its observations more neatly.
+
+## Citation
+
+- drgfreeman <img src="./readme_content/lambda.png"></img>. [[rockpaperscissors](https://www.kaggle.com/datasets/drgfreeman/rockpaperscissors)]
